@@ -1,0 +1,985 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Requisition System - User Training Manual</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            font-size: 12pt;
+            line-height: 1.6;
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 1in;
+            color: #333;
+            text-align: left;
+        }
+        
+        h1 {
+            color: #2E4BC6;
+            font-size: 24pt;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #8B0000;
+            padding-bottom: 10px;
+        }
+        
+        h2 {
+            color: #2E4BC6;
+            font-size: 18pt;
+            font-weight: bold;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+        
+        h3 {
+            color: #8B0000;
+            font-size: 14pt;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        h4 {
+            color: #333;
+            font-size: 12pt;
+            font-weight: bold;
+            margin-top: 15px;
+            margin-bottom: 8px;
+        }
+        
+        .toc {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .toc h2 {
+            color: #2E4BC6;
+            margin-top: 0;
+            border-bottom: none;
+        }
+        
+        .toc ol {
+            padding-left: 20px;
+        }
+        
+        .toc li {
+            margin-bottom: 5px;
+        }
+
+        .toc a {
+            color: #1d4ed8; /* blue */
+            text-decoration: underline;
+        }
+
+        .toc a:hover {
+            color: #183ea9;
+            background-color: #eef2ff;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #2E4BC6;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .workflow {
+            background-color: #f0f8ff;
+            border: 2px solid #2E4BC6;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .important {
+            background-color: #fff3cd;
+            border: 1px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .warning {
+            background-color: #f8d7da;
+            border: 1px solid #dc3545;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .steps {
+            counter-reset: step-counter;
+        }
+        
+        .steps li {
+            counter-increment: step-counter;
+            margin-bottom: 10px;
+        }
+        
+        .steps li::marker {
+            content: "Step " counter(step-counter) ": ";
+            font-weight: bold;
+            color: #2E4BC6;
+        }
+        
+        ul, ol {
+            padding-left: 25px;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+        
+        .page-break {
+            page-break-before: always;
+        }
+        
+        .header-info {
+            text-align: center;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        
+        .footer-info {
+            margin-top: 40px;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+            font-size: 10pt;
+            color: #666;
+        }
+        
+        .checklist {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .checklist input[type="checkbox"] {
+            margin-right: 8px;
+        }
+        
+        @media print {
+            body {
+                margin: 0;
+                padding: 0.5in;
+            }
+            
+            .page-break {
+                page-break-before: always;
+            }
+        }
+
+        /* Back to dashboard button */
+        .back-bar {
+            position: sticky;
+            top: 0;
+            background: #ffffff;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            z-index: 10;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 8px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            color: #1f2937;
+            text-decoration: none;
+            background: #f8fafc;
+        }
+
+        .back-button:hover {
+            background: #eef2ff;
+            border-color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+    <div class="back-bar">
+        <a class="back-button" href="/">← Back to Dashboard</a>
+    </div>
+    <div class="header-info">
+        <strong>Elimu Canada</strong><br>
+        Digital Requisition System<br>
+        Staff Training Manual
+    </div>
+
+    <h1>Digital Requisition System<br>User Training Manual</h1>
+
+    <div class="toc">
+        <h2>Table of Contents</h2>
+        <ol>
+            <li><a href="#system-overview">System Overview</a></li>
+            <li><a href="#getting-started">Getting Started</a></li>
+            <li><a href="#user-roles">User Roles and Permissions</a></li>
+            <li><a href="#login-registration">Login and Registration</a></li>
+            <li><a href="#dashboard-navigation">Dashboard Navigation</a></li>
+            <li><a href="#creating-requisitions">Creating Requisitions (Staff)</a></li>
+            <li><a href="#authorizing-requisitions">Authorizing Requisitions (Authoriser)</a></li>
+            <li><a href="#approving-requisitions">Approving Requisitions (Approver)</a></li>
+            <li><a href="#admin-functions">Administrative Functions (Admin)</a></li>
+            <li><a href="#profile-management">Profile Management</a></li>
+            <li><a href="#digital-signatures">Digital Signatures</a></li>
+            <li><a href="#liquidation-process">Liquidation Process</a></li>
+            <li><a href="#document-management">Document Management</a></li>
+            <li><a href="#reports-downloads">Reports and Downloads</a></li>
+            <li><a href="#troubleshooting">Troubleshooting</a></li>
+            <li><a href="#best-practices">Best Practices</a></li>
+        </ol>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h2 id="system-overview">1. System Overview</h2>
+    <p>The Digital Requisition System is a comprehensive platform designed for Elimu Canada to streamline the requisition approval process. The system manages the complete workflow from requisition creation to final approval and liquidation tracking.</p>
+
+    <h3>Key Features:</h3>
+    <ul>
+        <li><strong>Multi-role access control</strong> with four distinct user types</li>
+        <li><strong>Automated workflow</strong> from pending to approved status</li>
+        <li><strong>Digital signature integration</strong> for secure approvals</li>
+        <li><strong>Document attachment</strong> support for requisitions</li>
+        <li><strong>Real-time notifications</strong> and status updates</li>
+        <li><strong>Comprehensive reporting</strong> and audit trails</li>
+        <li><strong>PDF generation</strong> for official documentation</li>
+        <li><strong>Liquidation tracking</strong> for approved requisitions</li>
+    </ul>
+
+    <div class="workflow">
+        WORKFLOW: Staff Creates → Authoriser Reviews → Approver Reviews → Liquidation<br>
+        (Pending) → (Authorized) → (Approved) → (Complete)
+    </div>
+
+    <h3>System Benefits:</h3>
+    <ul>
+        <li>Eliminates paper-based processes</li>
+        <li>Provides clear audit trails</li>
+        <li>Ensures proper authorization hierarchy</li>
+        <li>Reduces processing time</li>
+        <li>Improves accountability and transparency</li>
+    </ul>
+
+    <div class="page-break"></div>
+
+    <h2 id="getting-started">2. Getting Started</h2>
+
+    <h3>System Requirements:</h3>
+    <ul>
+        <li><strong>Internet Connection</strong>: Required for all functionality</li>
+        <li><strong>Web Browser</strong>: Chrome, Firefox, Safari, or Edge (latest versions)</li>
+        <li><strong>Email Access</strong>: Required for notifications and password reset</li>
+    </ul>
+
+    <h3>Initial Setup:</h3>
+    <ol class="steps">
+        <li>Obtain system access from your administrator</li>
+        <li>Use the provided login credentials</li>
+        <li>Set up your profile and digital signature</li>
+        <li>Familiarize yourself with your dashboard</li>
+    </ol>
+
+    <div class="page-break"></div>
+
+    <h2 id="user-roles">3. User Roles and Permissions</h2>
+    <p>The system has four distinct user roles, each with specific permissions and responsibilities:</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Role</th>
+                <th>Primary Function</th>
+                <th>Key Permissions</th>
+                <th>Limitations</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Staff</strong></td>
+                <td>Create and submit requisitions</td>
+                <td>Create, view, edit, delete own requisitions</td>
+                <td>Cannot create new requisitions while having unliquidated approved ones</td>
+            </tr>
+            <tr>
+                <td><strong>Authoriser</strong></td>
+                <td>Review and authorize staff requisitions</td>
+                <td>View pending, authorize/reject, add notes</td>
+                <td>Cannot approve requisitions (only authorize)</td>
+            </tr>
+            <tr>
+                <td><strong>Approver</strong></td>
+                <td>Final approval of authorized requisitions</td>
+                <td>View authorized, approve/reject, add notes</td>
+                <td>Can only act on authorized requisitions</td>
+            </tr>
+            <tr>
+                <td><strong>Admin</strong></td>
+                <td>System administration and oversight</td>
+                <td>All system functions, user management, backups</td>
+                <td>Full system access</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="important">
+        <strong>Multi-Role Users:</strong> Users can have multiple roles and switch between dashboard views using the role switcher dropdown.
+    </div>
+
+    <div class="page-break"></div>
+
+    <h2 id="login-registration">4. Login and Registration</h2>
+
+    <h3>Logging In:</h3>
+    <ol class="steps">
+        <li>Navigate to the system URL</li>
+        <li>Enter your registered email address</li>
+        <li>Enter your password</li>
+        <li>Click "Login"</li>
+        <li>You'll be redirected to your appropriate dashboard</li>
+    </ol>
+
+    <h3>Staff Registration:</h3>
+    <ol class="steps">
+        <li>Click "Register as Staff Member" on the login page</li>
+        <li>Fill out the registration form</li>
+        <li>Upload your digital signature (optional but recommended)</li>
+        <li>Submit registration</li>
+        <li>Wait for account approval from administrator</li>
+    </ol>
+
+    <div class="warning">
+        <strong>Security Note:</strong> Always use strong passwords and log out when finished using the system.
+    </div>
+
+    <div class="page-break"></div>
+
+    <h2 id="dashboard-navigation">5. Dashboard Navigation</h2>
+
+    <h3>Header Section:</h3>
+    <ul>
+        <li><strong>Company Logo</strong>: Elimu Canada branding</li>
+        <li><strong>System Title</strong>: Digital Requisition System</li>
+        <li><strong>Role Badges</strong>: Shows your current roles</li>
+        <li><strong>Welcome Message</strong>: Displays your name</li>
+        <li><strong>Profile Button</strong>: Access profile settings</li>
+        <li><strong>Logout Button</strong>: Securely exit the system</li>
+    </ul>
+
+    <h3>Role Switcher (Multi-role users):</h3>
+    <ul>
+        <li>Dropdown menu to switch between role views</li>
+        <li>Help button to explain role functions</li>
+        <li>Automatic role detection and priority</li>
+    </ul>
+
+    <h3>Dashboard Sections:</h3>
+    <ul>
+        <li><strong>Statistics Cards</strong>: Summary of requisition counts</li>
+        <li><strong>Action Buttons</strong>: Role-specific actions</li>
+        <li><strong>Requisition Lists</strong>: Filtered by role and status</li>
+        <li><strong>Quick Actions</strong>: Download, hide, or manage items</li>
+    </ul>
+
+    <div class="page-break"></div>
+
+    <h2 id="creating-requisitions">6. Creating Requisitions (Staff)</h2>
+
+    <div class="important">
+        <strong>Before You Start:</strong> Ensure you have no unliquidated approved requisitions and gather all necessary information and documents.
+    </div>
+
+    <h3>Step-by-Step Process:</h3>
+
+    <h4>1. Access Requisition Form:</h4>
+    <ul>
+        <li>Click "Create New Requisition" on your dashboard</li>
+        <li>The form opens in a dialog window</li>
+    </ul>
+
+    <h4>2. Fill Basic Information:</h4>
+    <ul>
+        <li><strong>Date</strong>: Select the requisition date (defaults to today)</li>
+        <li><strong>Activity</strong>: Describe the purpose (e.g., "Office Supplies Purchase")</li>
+    </ul>
+
+    <h4>3. Add Items:</h4>
+    <p>For each item in your requisition:</p>
+    <ul>
+        <li><strong>Description</strong>: Detailed item description</li>
+        <li><strong>Quantity</strong>: Number of items needed</li>
+        <li><strong>Unit Price</strong>: Cost per item in KSH</li>
+        <li><strong>Total Price</strong>: Automatically calculated</li>
+    </ul>
+
+    <h4>4. Review Total Amount:</h4>
+    <ul>
+        <li>System automatically calculates total requisition amount</li>
+        <li>Verify all calculations are correct</li>
+    </ul>
+
+    <h4>5. Attach Documents (Optional):</h4>
+    <ul>
+        <li>Supported formats: PDF, DOC, DOCX, JPG, JPEG, PNG</li>
+        <li>Maximum file size: 5MB</li>
+        <li>Add meaningful filenames for easy identification</li>
+    </ul>
+
+    <h4>6. Submit Requisition:</h4>
+    <ul>
+        <li>Review all information carefully</li>
+        <li>Click "Submit Requisition"</li>
+        <li>Confirmation message will appear</li>
+        <li>Requisition moves to "Pending" status</li>
+    </ul>
+
+    <div class="warning">
+        <strong>Liquidation Blocking:</strong> If you have unliquidated approved requisitions, you cannot create new ones. Contact admin to mark existing requisitions as liquidated.
+    </div>
+
+    <div class="page-break"></div>
+
+    <h2 id="authorizing-requisitions">7. Authorizing Requisitions (Authoriser)</h2>
+
+    <h3>Your Role:</h3>
+    <p>As an Authoriser, you're the first approval level in the requisition workflow. Your job is to verify that requisitions are legitimate, properly documented, and align with organizational policies.</p>
+
+    <h3>Authorization Process:</h3>
+
+    <h4>1. Review Pending Requisitions:</h4>
+    <ul>
+        <li>Pending requisitions appear automatically on your dashboard</li>
+        <li>Click on any requisition card to expand details</li>
+        <li>Review all information thoroughly</li>
+    </ul>
+
+    <h4>2. Examine Requisition Details:</h4>
+    <ul>
+        <li><strong>Staff Information</strong>: Verify requestor identity</li>
+        <li><strong>Activity Description</strong>: Ensure purpose is clear and valid</li>
+        <li><strong>Item List</strong>: Check descriptions, quantities, and prices</li>
+        <li><strong>Total Amount</strong>: Verify calculations</li>
+        <li><strong>Attached Documents</strong>: Review supporting documentation</li>
+    </ul>
+
+    <h4>3. Make Authorization Decision:</h4>
+
+    <h5>To Authorize:</h5>
+    <ol class="steps">
+        <li>Click "Take Action" button</li>
+        <li>Add authorization notes (optional but recommended)</li>
+        <li>Click "Authorize"</li>
+        <li>Requisition moves to "Authorized" status</li>
+        <li>Automatically forwarded to Approver</li>
+    </ol>
+
+    <h5>To Reject:</h5>
+    <ol class="steps">
+        <li>Click "Take Action" button</li>
+        <li>Add rejection notes (required)</li>
+        <li>Explain reason for rejection clearly</li>
+        <li>Click "Reject"</li>
+        <li>Requisition returns to staff with notes</li>
+    </ol>
+
+    <div class="important">
+        <strong>Best Practices:</strong>
+        <ul>
+            <li>Process requisitions promptly</li>
+            <li>Check all details carefully</li>
+            <li>Provide detailed notes</li>
+            <li>Ensure requests meet organizational guidelines</li>
+        </ul>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h2 id="approving-requisitions">8. Approving Requisitions (Approver)</h2>
+
+    <h3>Your Role:</h3>
+    <p>As an Approver, you provide the final approval for authorized requisitions. You have budget authority and make final spending decisions.</p>
+
+    <h3>Approval Process:</h3>
+
+    <h4>1. Review Authorized Requisitions:</h4>
+    <ul>
+        <li>Only authorized requisitions appear in your queue</li>
+        <li>These have already passed first-level authorization</li>
+        <li>Review authorizer notes and recommendations</li>
+    </ul>
+
+    <h4>2. Final Verification:</h4>
+    <ul>
+        <li><strong>Budget Impact</strong>: Ensure funds are available</li>
+        <li><strong>Priority Assessment</strong>: Consider urgency and importance</li>
+        <li><strong>Policy Compliance</strong>: Final policy check</li>
+        <li><strong>Cost Effectiveness</strong>: Evaluate value for money</li>
+    </ul>
+
+    <h4>3. Make Final Decision:</h4>
+
+    <h5>To Approve:</h5>
+    <ol class="steps">
+        <li>Click "Take Action" button</li>
+        <li>Add approval notes</li>
+        <li>Click "Approve"</li>
+        <li>Requisition becomes "Approved"</li>
+        <li>Available for liquidation processing</li>
+    </ol>
+
+    <h5>To Reject:</h5>
+    <ol class="steps">
+        <li>Click "Take Action" button</li>
+        <li>Add detailed rejection notes</li>
+        <li>Click "Reject"</li>
+        <li>Requisition marked as "Rejected"</li>
+    </ol>
+
+    <div class="page-break"></div>
+
+    <h2 id="admin-functions">9. Administrative Functions (Admin)</h2>
+
+    <h3>Administrator Dashboard:</h3>
+    <p>The Admin dashboard provides comprehensive system oversight and management capabilities.</p>
+
+    <h3>Key Administrative Functions:</h3>
+
+    <h4>1. User Management:</h4>
+    <ul>
+        <li>View all user profiles</li>
+        <li>Manage user roles and permissions</li>
+        <li>Reset user passwords</li>
+        <li>Activate/deactivate accounts</li>
+    </ul>
+
+    <h4>2. Requisition Management:</h4>
+    <ul>
+        <li><strong>View All</strong>: Access every requisition in the system</li>
+        <li><strong>Status Override</strong>: Change requisition status if needed</li>
+        <li><strong>Bulk Operations</strong>: Process multiple requisitions</li>
+        <li><strong>Archive Management</strong>: Handle archived items</li>
+    </ul>
+
+    <h4>3. Liquidation Management:</h4>
+    <ul>
+        <li><strong>Update Status</strong>: Mark requisitions as liquidated</li>
+        <li><strong>Bulk Updates</strong>: Process multiple liquidations</li>
+        <li><strong>Tracking</strong>: Monitor liquidation progress</li>
+        <li><strong>Reporting</strong>: Generate liquidation reports</li>
+    </ul>
+
+    <h4>4. System Maintenance:</h4>
+    <ul>
+        <li><strong>Data Backup</strong>: Export system data to Google Drive</li>
+        <li><strong>Audit Logs</strong>: Review all system activities</li>
+        <li><strong>Performance Monitoring</strong>: Track system usage</li>
+        <li><strong>Data Cleanup</strong>: Remove old archived data</li>
+    </ul>
+
+    <div class="important">
+        <strong>Security Functions:</strong>
+        <ul>
+            <li>Review audit logs for all user actions</li>
+            <li>Monitor login activity</li>
+            <li>Ensure proper access controls</li>
+            <li>Verify system data consistency</li>
+        </ul>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h2 id="profile-management">10. Profile Management</h2>
+
+    <h3>Accessing Your Profile:</h3>
+    <ol class="steps">
+        <li>Click the "Profile" button in the header</li>
+        <li>Profile page opens with your information</li>
+        <li>Edit fields as needed</li>
+        <li>Save changes</li>
+    </ol>
+
+    <h3>Profile Information:</h3>
+    <ul>
+        <li><strong>Name</strong>: Your full name as it appears in the system</li>
+        <li><strong>Email</strong>: Your login email address</li>
+        <li><strong>Roles</strong>: Display only (managed by administrator)</li>
+        <li><strong>Digital Signature</strong>: Upload/manage your signature</li>
+    </ul>
+
+    <div class="warning">
+        <strong>Important Notes:</strong>
+        <ul>
+            <li>Only administrators can modify user roles</li>
+            <li>Email changes may affect login credentials</li>
+            <li>Profile updates reflect immediately in system</li>
+        </ul>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h2 id="digital-signatures">11. Digital Signatures</h2>
+
+    <h3>Purpose:</h3>
+    <p>Digital signatures are automatically included in PDF requisitions for official documentation and approval verification.</p>
+
+    <h3>Setting Up Your Signature:</h3>
+
+    <h4>First Time Setup:</h4>
+    <ol class="steps">
+        <li>Navigate to your Profile page</li>
+        <li>Scroll to "Digital Signature" section</li>
+        <li>Click the upload area or "Click to upload signature image"</li>
+        <li>Select your signature image file</li>
+    </ol>
+
+    <h4>File Requirements:</h4>
+    <ul>
+        <li><strong>Format</strong>: PNG, JPG, JPEG</li>
+        <li><strong>Size</strong>: Maximum 2MB</li>
+        <li><strong>Quality</strong>: Clear, high-contrast image</li>
+        <li><strong>Background</strong>: Transparent or white preferred</li>
+    </ul>
+
+    <h3>Best Practices:</h3>
+    <ul>
+        <li>Use high-resolution scans</li>
+        <li>Ensure signature is clearly visible</li>
+        <li>Keep file size reasonable while maintaining quality</li>
+        <li>PNG files often work best for signatures</li>
+    </ul>
+
+    <div class="page-break"></div>
+
+    <h2 id="liquidation-process">12. Liquidation Process</h2>
+
+    <h3>What is Liquidation?</h3>
+    <p>Liquidation is the process of confirming that approved requisition funds have been properly spent and accounted for. It's the final step in the requisition lifecycle.</p>
+
+    <div class="workflow">
+        Approved → Documentation → Verification → Liquidated
+    </div>
+
+    <h3>Liquidation Workflow:</h3>
+
+    <h4>1. Approved Requisitions:</h4>
+    <ul>
+        <li>Requisitions become eligible for liquidation after approval</li>
+        <li>Status initially shows as "Not Liquidated"</li>
+        <li>Staff cannot create new requisitions until liquidation is complete</li>
+    </ul>
+
+    <h4>2. Liquidation Requirements:</h4>
+    <ul>
+        <li><strong>Documentation</strong>: Proof of purchase (receipts, invoices)</li>
+        <li><strong>Verification</strong>: Confirmation items were received</li>
+        <li><strong>Accounting</strong>: Proper expense recording</li>
+        <li><strong>Approval</strong>: Administrative sign-off</li>
+    </ul>
+
+    <h3>Liquidation Statuses:</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Status</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Not Applicable</td>
+                <td>Requisition doesn't require liquidation</td>
+            </tr>
+            <tr>
+                <td>Not Liquidated</td>
+                <td>Awaiting liquidation processing</td>
+            </tr>
+            <tr>
+                <td>Liquidated</td>
+                <td>Process complete and verified</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="important">
+        <strong>Impact on Users:</strong> Staff cannot create new requisitions while having unliquidated approved items to maintain spending accountability.
+    </div>
+
+    <div class="page-break"></div>
+
+    <h2 id="document-management">13. Document Management</h2>
+
+    <h3>Supported File Types:</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>File Type</th>
+                <th>Extensions</th>
+                <th>Maximum Size</th>
+                <th>Best Use</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>PDF</td>
+                <td>.pdf</td>
+                <td>5MB</td>
+                <td>Official documents</td>
+            </tr>
+            <tr>
+                <td>Word Documents</td>
+                <td>.doc, .docx</td>
+                <td>5MB</td>
+                <td>Forms and letters</td>
+            </tr>
+            <tr>
+                <td>Images</td>
+                <td>.jpg, .jpeg, .png</td>
+                <td>5MB</td>
+                <td>Photos and scans</td>
+            </tr>
+            <tr>
+                <td>Signatures</td>
+                <td>.png, .jpg</td>
+                <td>2MB</td>
+                <td>Digital signatures</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Document Storage:</h3>
+    <ul>
+        <li><strong>Secure Storage</strong>: Files stored in encrypted cloud storage</li>
+        <li><strong>Access Control</strong>: Only authorized users can view documents</li>
+        <li><strong>Backup</strong>: Documents included in system backups</li>
+        <li><strong>Retention</strong>: Documents preserved with requisition records</li>
+    </ul>
+
+    <h3>Best Practices:</h3>
+    <ul>
+        <li>Use descriptive filenames</li>
+        <li>Ensure documents are clear and readable</li>
+        <li>Include all relevant supporting documentation</li>
+        <li>Don't include sensitive personal information unless necessary</li>
+    </ul>
+
+    <div class="page-break"></div>
+
+    <h2 id="reports-downloads">14. Reports and Downloads</h2>
+
+    <h3>Available Reports by Role:</h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Role</th>
+                <th>Available Reports</th>
+                <th>Content</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Staff</strong></td>
+                <td>My Requisitions</td>
+                <td>All your requisitions with status</td>
+            </tr>
+            <tr>
+                <td><strong>Authoriser</strong></td>
+                <td>Pending, Authorized, Rejected</td>
+                <td>Items you've processed</td>
+            </tr>
+            <tr>
+                <td><strong>Approver</strong></td>
+                <td>Authorized, Approved, Rejected</td>
+                <td>Final approval activity</td>
+            </tr>
+            <tr>
+                <td><strong>Admin</strong></td>
+                <td>System-wide, User Activity, Budget Analysis</td>
+                <td>Complete system reports</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Download Process:</h3>
+    <ol class="steps">
+        <li>Select appropriate report type</li>
+        <li>Apply filters (date range, status) if available</li>
+        <li>Click download button</li>
+        <li>System generates ZIP file with individual PDFs</li>
+        <li>Save file to your computer</li>
+    </ol>
+
+    <h3>Report Contents:</h3>
+    <p>Each PDF includes:</p>
+    <ul>
+        <li>Complete requisition details</li>
+        <li>User information and signatures</li>
+        <li>Approval trail and notes</li>
+        <li>Status history</li>
+        <li>Timestamps for all actions</li>
+    </ul>
+
+    <div class="page-break"></div>
+
+    <h2 id="troubleshooting">15. Troubleshooting</h2>
+
+    <h3>Common Issues and Solutions:</h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Issue</th>
+                <th>Possible Causes</th>
+                <th>Solutions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Cannot log in</td>
+                <td>Wrong credentials, account locked</td>
+                <td>Verify email/password, wait 15 minutes, contact admin</td>
+            </tr>
+            <tr>
+                <td>Cannot create requisition</td>
+                <td>Unliquidated approved requisitions</td>
+                <td>Contact admin to mark existing requisitions as liquidated</td>
+            </tr>
+            <tr>
+                <td>Upload fails</td>
+                <td>File too large, wrong format</td>
+                <td>Check file size (max 5MB), use supported formats</td>
+            </tr>
+            <tr>
+                <td>Dashboard not loading</td>
+                <td>Browser issues, connection problems</td>
+                <td>Refresh page, clear cache, try different browser</td>
+            </tr>
+            <tr>
+                <td>System running slowly</td>
+                <td>Internet speed, browser issues</td>
+                <td>Check connection, close extra tabs, clear cache</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Getting Help:</h3>
+    <ol>
+        <li><strong>First</strong>: Try troubleshooting steps above</li>
+        <li><strong>Documentation</strong>: Review relevant sections of this manual</li>
+        <li><strong>Administrator</strong>: Contact your system administrator</li>
+        <li><strong>Support</strong>: Use official support channels</li>
+    </ol>
+
+    <div class="warning">
+        <strong>When Reporting Issues:</strong>
+        <ul>
+            <li>Take screenshots of error messages</li>
+            <li>Note what you were trying to do</li>
+            <li>Record when the error occurred</li>
+            <li>Provide specific details</li>
+        </ul>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h2 id="best-practices">16. Best Practices</h2>
+
+    <h3>Security Best Practices:</h3>
+    <div class="checklist">
+        <input type="checkbox"> Use strong, unique passwords<br>
+        <input type="checkbox"> Always log out when finished<br>
+        <input type="checkbox"> Don't leave system open unattended<br>
+        <input type="checkbox"> Protect sensitive requisition data<br>
+        <input type="checkbox"> Report security concerns immediately
+    </div>
+
+    <h3>Data Quality Best Practices:</h3>
+    <div class="checklist">
+        <input type="checkbox"> Double-check all entries for accuracy<br>
+        <input type="checkbox"> Provide complete documentation<br>
+        <input type="checkbox"> Use clear, descriptive language<br>
+        <input type="checkbox"> Keep profile information current<br>
+        <input type="checkbox"> Maintain consistent data formats
+    </div>
+
+    <h3>Communication Best Practices:</h3>
+    <div class="checklist">
+        <input type="checkbox"> Write detailed notes for approvals/rejections<br>
+        <input type="checkbox"> Maintain professional communication standards<br>
+        <input type="checkbox"> Process items promptly<br>
+        <input type="checkbox"> Follow up on requisition status<br>
+        <input type="checkbox"> Provide constructive feedback when rejecting
+    </div>
+
+    <h3>Efficiency Tips:</h3>
+    <div class="checklist">
+        <input type="checkbox"> Use latest browser version<br>
+        <input type="checkbox"> Clear browser cache regularly<br>
+        <input type="checkbox"> Maintain stable internet connection<br>
+        <input type="checkbox"> Prepare information before starting<br>
+        <input type="checkbox"> Handle similar items together
+    </div>
+
+    <div class="page-break"></div>
+
+    <h2>Training Checklist</h2>
+
+    <div class="checklist">
+        <h3>For New Users:</h3>
+        <input type="checkbox"> Account setup and first login<br>
+        <input type="checkbox"> Profile completion with digital signature<br>
+        <input type="checkbox"> Dashboard orientation and navigation<br>
+        <input type="checkbox"> Role-specific functionality training<br>
+        <input type="checkbox"> Practice requisition creation (for staff)<br>
+        <input type="checkbox"> Review approval process (for authorizers/approvers)<br>
+        <input type="checkbox"> Document upload and management<br>
+        <input type="checkbox"> Report generation and download<br>
+        <input type="checkbox"> Password security and best practices
+    </div>
+
+    <h2>Conclusion</h2>
+    <p>The Digital Requisition System is designed to streamline and improve the requisition process for Elimu Canada. By following this manual and the best practices outlined, users can efficiently navigate the system and contribute to improved organizational processes.</p>
+
+    <div class="important">
+        <strong>Remember:</strong>
+        <ul>
+            <li><strong>Security First</strong>: Always protect system access and data</li>
+            <li><strong>Accuracy Matters</strong>: Careful data entry prevents problems</li>
+            <li><strong>Communication</strong>: Clear notes and timely responses help everyone</li>
+            <li><strong>Continuous Learning</strong>: The system may evolve - stay informed of updates</li>
+        </ul>
+    </div>
+
+    <p>For additional support or questions not covered in this manual, contact your system administrator.</p>
+
+    <div class="footer-info">
+        <strong>Document Information:</strong><br>
+        Version: 1.0<br>
+        Prepared By: Mahmoud Kenty<br>
+        For: Elimu Digital Requisition System Training<br>
+        <br>
+        <strong>Training Details:</strong><br>
+        Format: Hands-on training with live system<br>
+    </div>
+</body>
+</html>
