@@ -12,8 +12,8 @@ const EMAILJS_CONFIG = {
 // Email addresses for different roles
 const ROLE_EMAILS = {
   staff: "kenty.drew8914@gmail.com",
-  authoriser: ["mahmoud@elimu.ca","pamela@elimu.ca","jonah@elimu.ca","anthony@elimu.ca"],
-  approver: ["nina@elimu.ca"]
+  authoriser: ["mahmoudhussein8975@gmail.com.ca"],
+  approver: ["kentydrew8914@gmail.com"]
 };
 
 // Initialize EmailJS
