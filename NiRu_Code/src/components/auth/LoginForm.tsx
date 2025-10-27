@@ -74,17 +74,25 @@ const LoginForm = () => {
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <Card className="w-full max-w-md">
-        <CardHeader className="text-center">
-          <div className="flex justify-center mb-2">
-            <img
-              src="https://new.elimu.ca/wp-content/uploads/2020/07/logo-2.png"
-              alt="Elimu Logo"
-              style={{ maxHeight: '60px' }}
-            />
+        <CardHeader className="text-center pb-6">
+          <div className="flex justify-center mb-6">
+            <div className="relative">
+              <img
+                src="/Futuristic NIRU_DRS Logo Design.png"
+                alt="NiRu DRS Logo"
+                className="h-20 w-auto object-contain mx-auto"
+                style={{ 
+                  maxWidth: '320px',
+                  maxHeight: '80px',
+                  filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))'
+                }}
+              />
+            </div>
           </div>
-          <h3 className="tracking-tight text-2xl font-bold bg-gradient-to-r from-organization-blue to-organization-maroon bg-clip-text text-transparent">
+          <h3 className="tracking-tight text-xl font-bold bg-gradient-to-r from-organization-blue to-organization-maroon bg-clip-text text-transparent">
             Digital Requisition System
           </h3>
+          <p className="text-sm text-gray-500 mt-1">Streamline your workflow</p>
         </CardHeader>
 
         <CardContent>

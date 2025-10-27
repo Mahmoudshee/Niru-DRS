@@ -197,9 +197,9 @@ const getUserIdFromAuditLogs = async (requisitionId: string, action: 'authorized
 export const generateRequisitionPDF = async (requisition: Requisition, authoriserName?: string, approverName?: string, currentUserRole?: string, currentUserId?: string) => {
   const pdf = new jsPDF();
   
-  // Add Elimu logo centered at the top
+  // Add NiRu logo centered at the top
   try {
-    const logoResponse = await fetch('/elimu-logo.png');
+    const logoResponse = await fetch('/Futuristic NIRU_DRS Logo Design.png');
     if (!logoResponse.ok) {
       throw new Error(`Logo not found`);
     }
@@ -263,7 +263,7 @@ export const generateRequisitionPDF = async (requisition: Requisition, authorise
   pdf.setFontSize(16);
   pdf.setFont('helvetica', 'bold');
   pdf.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
-  const headerText = 'ELIMU DEVELOPMENT PROJECTS';
+  const headerText = 'NIRU DEVELOPMENT PROJECTS';
   const headerWidth = pdf.getTextWidth(headerText);
   pdf.text(headerText, (pageWidth - headerWidth) / 2, 38);
   
@@ -764,7 +764,7 @@ export const generateRequisitionsSummaryPDF = async (requisitions: Requisition[]
   // Add header
   pdf.setFontSize(16);
   pdf.setFont('helvetica', 'bold');
-  pdf.text('Elimu Canada - Requisitions Summary', 20, 20);
+  pdf.text('NiRu DRS - Requisitions Summary', 20, 20);
   
   pdf.setFontSize(12);
   pdf.text(title, 20, 35);

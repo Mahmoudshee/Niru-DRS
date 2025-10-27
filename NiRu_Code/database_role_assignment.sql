@@ -13,17 +13,17 @@ WHERE roles IS NULL;
 -- Make Alice Admin have all roles
 UPDATE profiles 
 SET roles = ARRAY['admin', 'authoriser', 'approver', 'staff']
-WHERE email = 'admin@elimu.ca';
+WHERE email = 'admin@niru.ca';
 
 -- Make a staff member also an authoriser
 UPDATE profiles 
 SET roles = ARRAY['staff', 'authoriser']
-WHERE email = 'somestaff@elimu.ca';
+WHERE email = 'somestaff@niru.ca';
 
 -- Make someone both authoriser and approver
 UPDATE profiles 
 SET roles = ARRAY['authoriser', 'approver']
-WHERE email = 'manager@elimu.ca';
+WHERE email = 'manager@niru.ca';
 
 -- View all users and their roles
 SELECT name, email, roles FROM profiles;

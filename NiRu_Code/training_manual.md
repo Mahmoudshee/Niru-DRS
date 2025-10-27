@@ -22,7 +22,7 @@
 
 ## System Overview
 
-The Digital Requisition System is a comprehensive platform designed for Elimu Canada to streamline the requisition approval process. The system manages the complete workflow from requisition creation to final approval and liquidation tracking.
+The Digital Requisition System is a comprehensive platform designed for NiRu to streamline the requisition approval process. The system manages the complete workflow from requisition creation to final approval and liquidation tracking.
 
 ### Key Features:
 - **Multi-role access control** with four distinct user types
@@ -160,7 +160,7 @@ Users can have multiple roles and switch between dashboard views:
 ## Dashboard Navigation
 
 ### Header Section:
-- **Company Logo**: Elimu Canada branding
+- **Company Logo**: NiRu branding
 - **System Title**: Digital Requisition System
 - **Role Badges**: Shows your current roles
 - **Welcome Message**: Displays your name
@@ -823,7 +823,7 @@ Each PDF includes:
 
 ## Conclusion
 
-The Digital Requisition System is designed to streamline and improve the requisition process for Elimu Canada. By following this manual and the best practices outlined, users can efficiently navigate the system and contribute to improved organizational processes.
+The Digital Requisition System is designed to streamline and improve the requisition process for NiRu. By following this manual and the best practices outlined, users can efficiently navigate the system and contribute to improved organizational processes.
 
 Remember:
 - **Security First**: Always protect system access and data
@@ -839,7 +839,7 @@ For additional support or questions not covered in this manual, contact your sys
 - **Version**: 1.0
 - **Last Updated**: [Current Date]
 - **Prepared By**: System Administrator
-- **For**: Elimu Canada Staff Training
+- **For**: NiRu Staff Training
 
 **Training Schedule:**
 - **Date**: [To be scheduled]

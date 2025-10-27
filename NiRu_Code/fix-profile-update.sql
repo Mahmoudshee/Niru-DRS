@@ -43,4 +43,4 @@ END;
 $$;
 
 -- Test the function (this will show if it works)
--- You can run this to test: SELECT public.update_user_profile('Test Name', 'test@elimu.ca');
+-- You can run this to test: SELECT public.update_user_profile('Test Name', 'test@niru.ca');

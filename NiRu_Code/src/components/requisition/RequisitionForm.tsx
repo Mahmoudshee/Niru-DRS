@@ -10,6 +10,7 @@ import { useToast } from '@/hooks/use-toast';
 import { RequisitionItem, Requisition } from '@/types/requisition';
 import { Plus, Trash2, Upload, FileText } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
+import PolicyAssistant from '@/components/ai/PolicyAssistant';
 
 interface RequisitionFormProps {
   editingRequisition?: Requisition;
@@ -448,6 +449,15 @@ const RequisitionForm = ({ editingRequisition, onComplete }: RequisitionFormProp
               )}
             </div>
           </div>
+
+          {/* AI Policy Assistant */}
+          <PolicyAssistant 
+            requisitionData={{
+              activity: formData.activity,
+              items: items,
+              totalAmount: items.reduce((sum, item) => sum + item.totalPrice, 0)
+            }}
+          />
 
           <Button type="submit" className="w-full" disabled={uploading || isSubmitting}>
             {uploading || isSubmitting ? (

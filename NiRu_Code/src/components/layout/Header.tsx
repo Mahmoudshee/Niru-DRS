@@ -28,7 +28,7 @@ const Header = () => {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <h1 className="text-xl font-semibold text-gray-900">
-              Elimu Canada - Digital Requisition System
+              NiRu DRS - Digital Requisition System
             </h1>
           </div>
           

@@ -210,7 +210,7 @@ serve(async (req) => {
     // Upload zip to Google Drive
     console.log('Uploading zip to Google Drive...')
     const zipFileId = await uploadToGoogleDrive(
-      `elimu-backup-${timestamp}.zip`, 
+      `niru-backup-${timestamp}.zip`, 
       zipBytes, 
       accessToken
     )
@@ -220,7 +220,7 @@ serve(async (req) => {
     return new Response(JSON.stringify({
       success: true,
       message: 'Backup completed successfully',
-      backup_file: `elimu-backup-${timestamp}.zip`,
+      backup_file: `niru-backup-${timestamp}.zip`,
       google_drive_file_id: zipFileId,
       backup_stats: {
         requisitions_count: (requisitions || []).length,

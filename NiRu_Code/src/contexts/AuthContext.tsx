@@ -189,10 +189,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const register = async (name: string, email: string, password: string): Promise<{ success: boolean; error?: string }> => {
     try {
-      // Check if email domain is allowed
-      if (!email.endsWith('@elimu.ca')) {
-        return { success: false, error: 'Only @elimu.ca email addresses are allowed to register' };
-      }
+      // Email domain restriction removed - any email address is now allowed
+      // if (!email.endsWith('@elimu.ca')) {
+      //   return { success: false, error: 'Only @elimu.ca email addresses are allowed to register' };
+      // }
 
       const { data, error } = await supabase.auth.signUp({
         email,
