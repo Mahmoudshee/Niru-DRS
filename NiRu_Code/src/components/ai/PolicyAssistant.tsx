@@ -5,8 +5,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Loader2, Brain, CheckCircle, AlertTriangle, Info } from "lucide-react";
 
-const OPENROUTER_API_KEY = (import.meta as any)?.env?.VITE_OPENROUTER_API_KEY as string | undefined;
-
 interface PolicyAssistantProps {
   requisitionData?: {
     activity: string;
@@ -55,7 +53,6 @@ Respond with specific, actionable recommendations in bullet points.
 `;
 
     try {
-
       const res = await fetch("/api/openrouter", {
         method: "POST",
         headers: {
@@ -63,6 +60,11 @@ Respond with specific, actionable recommendations in bullet points.
         },
         body: JSON.stringify({ prompt }),
       });
+
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(errorData.error || `API error: ${res.status}`);
+      }
 
       const data = await res.json();
       const reply = data?.choices?.[0]?.message?.content?.trim() || data?.reply || "No response from AI";

@@ -6,23 +6,16 @@ import { componentTagger } from "lovable-tagger";
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
-  const OPENROUTER_API_KEY = env.OPENROUTER_API_KEY || "";
-  const OPENROUTER_REFERER = env.OPENROUTER_REFERER || "http://localhost:8081";
   return ({
   server: {
     host: "::",
     port: 8081,
     proxy: {
       "/api/openrouter": {
-        target: "https://openrouter.ai",
+        target: "http://localhost:54321",
         changeOrigin: true,
-        secure: true,
-        headers: {
-          Authorization: `Bearer ${OPENROUTER_API_KEY}`,
-          "HTTP-Referer": OPENROUTER_REFERER,
-          "X-Title": "Policy Assistant Prototype",
-        },
-        rewrite: (path) => path.replace(/^\/api\/openrouter$/, "/api/v1/chat/completions"),
+        secure: false,
+        rewrite: (path) => path.replace(/^\/api\/openrouter/, "/functions/v1/policy-assistant"),
       },
     },
   },

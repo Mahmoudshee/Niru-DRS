@@ -4,6 +4,7 @@
 VITE_SUPABASE_URL=https://jknubpustqswobaujseq.supabase.co
 VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImprbnVicHVzdHFzd29iYXVqc2VxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU4Mzk1NTksImV4cCI6MjA3MTQxNTU1OX0.re7S3fxVomLy4eKGZVIJlU_20tESdg2zBkf1PFkOlBw
 
-# Hugging Face API Key for AI Policy Assistant
-# Get your API key from: https://huggingface.co/settings/tokens
-VITE_HF_API_KEY=your_hugging_face_api_key_here
+# OpenRouter API Key for AI Policy Assistant (used by Supabase Edge Function)
+# Get your API key from: https://openrouter.ai/keys
+# This key is used server-side in: supabase/functions/policy-assistant/index.ts
+OPENROUTER_API_KEY=sk-or-your-key-here
