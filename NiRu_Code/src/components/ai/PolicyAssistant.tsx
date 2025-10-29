@@ -4,7 +4,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Loader2, Brain, CheckCircle, AlertTriangle, Info } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+
+const OPENROUTER_API_KEY = import.meta.env.VITE_OPENROUTER_API_KEY as string | undefined;
 
 interface PolicyAssistantProps {
   requisitionData?: {
@@ -54,17 +55,47 @@ Respond with specific, actionable recommendations in bullet points.
 `;
 
     try {
-      const { data, error } = await supabase.functions.invoke("policy-assistant", {
-        body: { prompt },
-      });
-
-      if (error) {
-        throw new Error(error.message || "Function error");
+      if (!OPENROUTER_API_KEY) {
+        throw new Error("Missing VITE_OPENROUTER_API_KEY in .env");
       }
 
-      const response = (data as { reply?: string })?.reply || "No response from AI";
-      setAiResponse(response);
-      onRecommendations?.(response);
+      const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${OPENROUTER_API_KEY}`,
+          "Content-Type": "application/json",
+          "HTTP-Referer": window.location.origin,
+          "X-Title": "NiRu DRS Policy Assistant",
+        },
+        body: JSON.stringify({
+          model: "qwen/qwen3-235b-a22b:free",
+          messages: [
+            {
+              role: "system",
+              content:
+                "You are an AI Procurement Policy Assistant. Give concise, factual, and clearly formatted answers (no asterisks or markdown). Limit output to about 6 lines per response.",
+            },
+            { role: "user", content: prompt },
+          ],
+        }),
+      });
+
+      const data = await res.json();
+      let message: string | undefined =
+        data?.choices?.[0]?.message?.content?.trim() ||
+        data?.choices?.[0]?.message?.reasoning?.trim() ||
+        data?.choices?.[0]?.message?.reasoning_details?.[0]?.text?.trim();
+
+      if (!message) {
+        message = "No valid content from model.";
+      }
+
+      if (message.length > 800) {
+        message = message.substring(0, 800) + "...";
+      }
+
+      setAiResponse(message);
+      onRecommendations?.(message);
     } catch (err: unknown) {
       if (err instanceof Error) setError(err.message);
       else setError("Unknown error occurred");
@@ -85,11 +116,18 @@ Respond with specific, actionable recommendations in bullet points.
         </p>
       </CardHeader>
       <CardContent className="space-y-4">
-        {/* No client API key needed; uses Supabase Edge Function */}
+        {!OPENROUTER_API_KEY && (
+          <div className="flex items-center gap-2 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+            <AlertTriangle className="h-4 w-4 text-yellow-600" />
+            <span className="text-sm text-yellow-800">
+              Add VITE_OPENROUTER_API_KEY to your .env file to enable AI assistance
+            </span>
+          </div>
+        )}
 
         <Button
           onClick={handleAnalyze}
-          disabled={loading || !requisitionData}
+          disabled={loading || !requisitionData || !OPENROUTER_API_KEY}
           className="w-full bg-blue-600 hover:bg-blue-700"
         >
           {loading ? (
