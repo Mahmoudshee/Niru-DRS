@@ -36,6 +36,31 @@ npm i
 npm run dev
 ```
 
+## Environment setup for AI Policy Assistant
+
+Create a `.env` file in the project root (same folder as `package.json`) and add your OpenRouter API key. This key is used server-side by the Supabase Edge Function and is never exposed to the browser.
+
+```
+OPENROUTER_API_KEY=sk-your-openrouter-key
+```
+
+## Development: single command
+
+Use one terminal:
+
+```
+npm install
+npm run dev
+```
+
+This starts:
+- Supabase Edge Function `policy-assistant` on port 54321
+- Vite dev server on port 8081
+
+The frontend calls `/api/openrouter`, which Vite proxies to the Supabase function at `/functions/v1/policy-assistant`, which then calls OpenRouter with your server-side key.
+
+If your Supabase functions run on a different port, update `vite.config.ts` proxy target accordingly.
+
 **Edit a file directly in GitHub**
 
 - Navigate to the desired file(s).
