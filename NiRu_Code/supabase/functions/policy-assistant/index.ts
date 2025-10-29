@@ -1,6 +1,7 @@
 // Supabase Edge Function: policy-assistant
 // Calls OpenRouter chat completions with a concise procurement policy assistant system prompt
 
+import "https://deno.land/std@0.224.0/dotenv/load.ts"; // Loads .env for local dev
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 
 type ChatRequest = {
