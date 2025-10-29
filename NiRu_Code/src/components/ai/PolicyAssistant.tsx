@@ -4,9 +4,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Loader2, Brain, CheckCircle, AlertTriangle, Info } from "lucide-react";
-
-const HF_API_KEY = import.meta.env.VITE_HF_API_KEY;
-const MODEL = "facebook/bart-large-cnn";
+import { supabase } from "@/integrations/supabase/client";
 
 interface PolicyAssistantProps {
   requisitionData?: {
@@ -23,11 +21,6 @@ const PolicyAssistant: React.FC<PolicyAssistantProps> = ({ requisitionData, onRe
   const [error, setError] = useState<string | null>(null);
 
   const handleAnalyze = async () => {
-    if (!HF_API_KEY) {
-      setError("Hugging Face API key not configured. Please add VITE_HF_API_KEY to your .env file.");
-      return;
-    }
-
     setLoading(true);
     setError(null);
     setAiResponse(null);
@@ -61,21 +54,15 @@ Respond with specific, actionable recommendations in bullet points.
 `;
 
     try {
-      const res = await fetch(`https://router.huggingface.co/hf-inference/models/${MODEL}`, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${HF_API_KEY}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ inputs: prompt }),
+      const { data, error } = await supabase.functions.invoke("policy-assistant", {
+        body: { prompt },
       });
 
-      if (!res.ok) {
-        throw new Error(`HTTP ${res.status} ${res.statusText}`);
+      if (error) {
+        throw new Error(error.message || "Function error");
       }
 
-      const data = await res.json();
-      const response = data[0]?.summary_text || "No response from AI";
+      const response = (data as { reply?: string })?.reply || "No response from AI";
       setAiResponse(response);
       onRecommendations?.(response);
     } catch (err: unknown) {
@@ -98,18 +85,11 @@ Respond with specific, actionable recommendations in bullet points.
         </p>
       </CardHeader>
       <CardContent className="space-y-4">
-        {!HF_API_KEY && (
-          <div className="flex items-center gap-2 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
-            <AlertTriangle className="h-4 w-4 text-yellow-600" />
-            <span className="text-sm text-yellow-800">
-              Add VITE_HF_API_KEY to your .env file to enable AI assistance
-            </span>
-          </div>
-        )}
+        {/* No client API key needed; uses Supabase Edge Function */}
 
         <Button
           onClick={handleAnalyze}
-          disabled={loading || !requisitionData || !HF_API_KEY}
+          disabled={loading || !requisitionData}
           className="w-full bg-blue-600 hover:bg-blue-700"
         >
           {loading ? (
