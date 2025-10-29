@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Loader2, Brain, CheckCircle, AlertTriangle, Info } from "lucide-react";
 
-const OPENROUTER_API_KEY = import.meta.env.VITE_OPENROUTER_API_KEY as string | undefined;
+const OPENROUTER_API_KEY = (import.meta as any)?.env?.VITE_OPENROUTER_API_KEY as string | undefined;
 
 interface PolicyAssistantProps {
   requisitionData?: {
@@ -55,9 +55,6 @@ Respond with specific, actionable recommendations in bullet points.
 `;
 
     try {
-      if (!OPENROUTER_API_KEY) {
-        throw new Error("Missing VITE_OPENROUTER_API_KEY in .env");
-      }
 
       const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
         method: "POST",
@@ -116,18 +113,11 @@ Respond with specific, actionable recommendations in bullet points.
         </p>
       </CardHeader>
       <CardContent className="space-y-4">
-        {!OPENROUTER_API_KEY && (
-          <div className="flex items-center gap-2 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
-            <AlertTriangle className="h-4 w-4 text-yellow-600" />
-            <span className="text-sm text-yellow-800">
-              Add VITE_OPENROUTER_API_KEY to your .env file to enable AI assistance
-            </span>
-          </div>
-        )}
+        
 
         <Button
           onClick={handleAnalyze}
-          disabled={loading || !requisitionData || !OPENROUTER_API_KEY}
+          disabled={loading || !requisitionData}
           className="w-full bg-blue-600 hover:bg-blue-700"
         >
           {loading ? (
