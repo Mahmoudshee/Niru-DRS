@@ -61,8 +61,8 @@ Respond with specific, actionable recommendations in bullet points.
         headers: {
           Authorization: `Bearer ${OPENROUTER_API_KEY}`,
           "Content-Type": "application/json",
-          "HTTP-Referer": window.location.origin,
-          "X-Title": "NiRu DRS Policy Assistant",
+          "HTTP-Referer": "http://localhost:3000",
+          "X-Title": "Policy Assistant Prototype",
         },
         body: JSON.stringify({
           model: "qwen/qwen3-235b-a22b:free",
