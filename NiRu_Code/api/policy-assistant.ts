@@ -1,57 +1,43 @@
-import type { VercelRequest, VercelResponse } from "@vercel/node";
+import type { VercelRequest, VercelResponse } from '@vercel/node';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  if (req.method !== "POST") {
-    return res.status(405).json({ error: "Only POST requests allowed" });
-  }
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+	res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
-  const { prompt } = req.body || {};
+	if (req.method === 'OPTIONS') return res.status(200).end();
+	if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  if (!prompt) {
-    return res.status(400).json({ error: "Missing prompt text" });
-  }
+	const { prompt } = (req.body || {}) as { prompt?: string };
+	const apiKey = process.env.OPENROUTER_API_KEY;
 
-  try {
-    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
-        "Content-Type": "application/json",
-        "HTTP-Referer": process.env.OPENROUTER_REFERER || "http://localhost:3000",
-        "X-Title": process.env.OPENROUTER_TITLE || "Policy Assistant Prototype",
-      },
-      body: JSON.stringify({
-        model: "qwen/qwen3-235b-a22b:free",
-        messages: [
-          {
-            role: "system",
-            content:
-              "You are an AI Procurement Policy Assistant. Give concise, factual, and clearly formatted answers (no asterisks or markdown). Limit output to about 6 lines per response.",
-          },
-          { role: "user", content: prompt },
-        ],
-      }),
-    });
+	if (!apiKey) return res.status(401).json({ error: 'Missing API key' });
+	if (!prompt) return res.status(400).json({ error: 'Missing prompt text' });
 
-    const data = await response.json();
-    let message: string | undefined =
-      data?.choices?.[0]?.message?.content?.trim() ||
-      data?.choices?.[0]?.message?.reasoning?.trim() ||
-      data?.choices?.[0]?.message?.reasoning_details?.[0]?.text?.trim();
+	try {
+		const aiRes = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+			method: 'POST',
+			headers: {
+				Authorization: `Bearer ${apiKey}`,
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				model: 'qwen/qwen3-235b-a22b:free',
+				messages: [
+					{ role: 'system', content: 'You are a professional procurement policy analyzer. Respond concisely and clearly.' },
+					{ role: 'user', content: prompt },
+				],
+			}),
+		});
 
-    if (!message) {
-      return res.status(200).json({ reply: "⚠️ No valid content from model. Check console logs for details." });
-    }
+		const data = await aiRes.json();
+		const reply = data?.choices?.[0]?.message?.content || 'No valid AI response.';
 
-    if (message.length > 800) {
-      message = message.substring(0, 800) + "...";
-    }
-
-    return res.status(200).json({ reply: message });
-  } catch (error) {
-    console.error("OpenRouter API Error:", error);
-    return res.status(500).json({ error: "Failed to fetch response from OpenRouter API." });
-  }
+		res.status(200).json({ reply });
+	} catch (error) {
+		console.error('AI API error:', error);
+		res.status(500).json({ error: 'Failed to connect to OpenRouter' });
+	}
 }
 
 

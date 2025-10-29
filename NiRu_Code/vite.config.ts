@@ -10,14 +10,7 @@ export default defineConfig(({ mode }) => {
   server: {
     host: "::",
     port: 8081,
-    proxy: {
-      "/api/openrouter": {
-        target: "http://localhost:54321",
-        changeOrigin: true,
-        secure: false,
-        rewrite: (path) => path.replace(/^\/api\/openrouter/, "/functions/v1/policy-assistant"),
-      },
-    },
+    proxy: {},
   },
   plugins: [
     react(),

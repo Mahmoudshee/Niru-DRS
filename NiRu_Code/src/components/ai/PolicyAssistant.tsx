@@ -53,7 +53,7 @@ Respond with specific, actionable recommendations in bullet points.
 `;
 
     try {
-      const res = await fetch("/api/openrouter", {
+      const res = await fetch("/api/policy-assistant", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
