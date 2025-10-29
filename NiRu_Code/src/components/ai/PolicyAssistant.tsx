@@ -56,43 +56,18 @@ Respond with specific, actionable recommendations in bullet points.
 
     try {
 
-      const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+      const res = await fetch("/api/openrouter", {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${OPENROUTER_API_KEY}`,
           "Content-Type": "application/json",
-          "HTTP-Referer": "http://localhost:3000",
-          "X-Title": "Policy Assistant Prototype",
         },
-        body: JSON.stringify({
-          model: "qwen/qwen3-235b-a22b:free",
-          messages: [
-            {
-              role: "system",
-              content:
-                "You are an AI Procurement Policy Assistant. Give concise, factual, and clearly formatted answers (no asterisks or markdown). Limit output to about 6 lines per response.",
-            },
-            { role: "user", content: prompt },
-          ],
-        }),
+        body: JSON.stringify({ prompt }),
       });
 
       const data = await res.json();
-      let message: string | undefined =
-        data?.choices?.[0]?.message?.content?.trim() ||
-        data?.choices?.[0]?.message?.reasoning?.trim() ||
-        data?.choices?.[0]?.message?.reasoning_details?.[0]?.text?.trim();
-
-      if (!message) {
-        message = "No valid content from model.";
-      }
-
-      if (message.length > 800) {
-        message = message.substring(0, 800) + "...";
-      }
-
-      setAiResponse(message);
-      onRecommendations?.(message);
+      const reply = data?.choices?.[0]?.message?.content?.trim() || data?.reply || "No response from AI";
+      setAiResponse(reply);
+      onRecommendations?.(reply);
     } catch (err: unknown) {
       if (err instanceof Error) setError(err.message);
       else setError("Unknown error occurred");
