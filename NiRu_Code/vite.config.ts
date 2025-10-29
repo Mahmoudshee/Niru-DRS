@@ -10,7 +10,19 @@ export default defineConfig(({ mode }) => {
   server: {
     host: "::",
     port: 8081,
-    proxy: {},
+    proxy: {
+      // Local dev only: proxy to OpenRouter with server-side header
+      "/api/policy-assistant": {
+        target: "https://openrouter.ai",
+        changeOrigin: true,
+        secure: true,
+        headers: {
+          Authorization: `Bearer ${env.OPENROUTER_API_KEY || ""}`,
+          "Content-Type": "application/json",
+        },
+        rewrite: (path) => path.replace(/^\/api\/policy-assistant$/, "/api/v1/chat/completions"),
+      },
+    },
   },
   plugins: [
     react(),
