@@ -22,6 +22,8 @@ export default defineConfig(({ mode }) => {
         },
         rewrite: (path) => path.replace(/^\/api\/policy-assistant$/, "/api/v1/chat/completions"),
       },
+      // Note: approval-assistant uses API endpoint file for request transformation
+      // For local dev, use vercel dev or serve the API endpoint separately
     },
   },
   plugins: [

@@ -21,6 +21,7 @@ import {
   DollarSign 
 } from 'lucide-react';
 import { generateRequisitionPDF } from '@/utils/pdfGenerator';
+import ApprovalAssistant from '@/components/ai/ApprovalAssistant';
 
 interface CollapsibleRequisitionProps {
   requisition: Requisition;
@@ -363,6 +364,13 @@ const CollapsibleRequisition: React.FC<CollapsibleRequisitionProps> = ({
               <div className="p-3 bg-green-50 rounded">
                 <strong>Approver Notes:</strong>
                 <p className="mt-1">{requisition.approverNotes}</p>
+              </div>
+            )}
+
+            {/* AI Approval Assistant - Show for approvers viewing authorized requisitions */}
+            {user?.roles?.includes('approver') && requisition.status === 'authorized' && (
+              <div className="pt-2">
+                <ApprovalAssistant requisition={requisition} />
               </div>
             )}
 
