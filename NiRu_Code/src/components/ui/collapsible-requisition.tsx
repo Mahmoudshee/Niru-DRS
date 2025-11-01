@@ -374,10 +374,17 @@ const CollapsibleRequisition: React.FC<CollapsibleRequisitionProps> = ({
               </div>
             )}
 
+            {/* Action Buttons - Show for approvers and authorisers */}
             {canTakeAction() && (
-              <div className="pt-4 border-t">
+              <div className="pt-4 border-t space-y-3">
+                <div className="text-sm text-muted-foreground">
+                  {user?.roles?.includes('approver') && requisition.status === 'authorized' 
+                    ? 'Review the AI suggestion above, then make your decision:'
+                    : 'Add notes and take action:'}
+                </div>
                 {!showActions ? (
                   <Button onClick={() => setShowActions(true)} className="w-full bg-organization-blue hover:bg-organization-blue/90">
+                    <CheckCircle className="h-4 w-4 mr-2" />
                     Take Action
                   </Button>
                 ) : (
@@ -388,7 +395,7 @@ const CollapsibleRequisition: React.FC<CollapsibleRequisitionProps> = ({
                         id="notes"
                         value={notes}
                         onChange={(e) => setNotes(e.target.value)}
-                        placeholder="Add any comments or notes..."
+                        placeholder="Add any comments or notes based on AI suggestion..."
                         rows={3}
                       />
                     </div>
